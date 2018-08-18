@@ -1,8 +1,10 @@
+#!/usr/bin/bash
+
 COOKIE="oraclelicense=accept-securebackup-cookie"
 
-U=152
-B=16
-HASH=aa0333dd3019491ca4f6ddbe78cdb6d0
+U=181
+B=13
+HASH=96a7b8442fe848ef90c96a2fad6ed6d1
 LOC=http://download.oracle.com/otn-pub/java/jdk/8u$U-b$B/$HASH
 
 #curl -LJO -b "$COOKIE" $LOC/jdk-8u$U-linux-i586.tar.gz

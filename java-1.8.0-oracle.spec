@@ -28,12 +28,15 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+%global _missing_build_ids_terminate_build 0
+%global debug_package %{nil}
+
 %define section         non-free
 
 %define origin          oracle
 %define javaver         1.8.0
 %define cvsver          8
-%define buildver        152
+%define buildver        181
 %define tzversion       2_1_1
 # Note: if buildver reaches 4 digits, drop a zero from the priority so
 # that the priority number remains 6 digits
@@ -60,6 +63,7 @@
 %define multi_suffix    .x86_64
 %endif
 
+%define _jvmjardir      %{_jvmdir}-exports
 %define sdklnk          java-%{javaver}-%{origin}%{multi_suffix}
 %define jrelnk          jre-%{javaver}-%{origin}%{multi_suffix}
 %define sdkdir          %{name}-%{version}%{multi_suffix}
@@ -98,7 +102,7 @@
 
 Name:           java-%{javaver}-%{origin}
 Version:        %{javaver}%{?buildver:.%{buildver}}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Oracle Java Runtime Environment
 License:        Oracle Corporation Binary Code License
 URL:            http://download.oracle.com/javase/8/docs/
@@ -804,6 +808,8 @@ fi
 %{_jvmdir}/%{jredir}/lib/%{archname}/libavplugin-55.so
 %{_jvmdir}/%{jredir}/lib/%{archname}/libavplugin-56.so
 %{_jvmdir}/%{jredir}/lib/%{archname}/libavplugin-ffmpeg-56.so
+%{_jvmdir}/%{jredir}/lib/%{archname}/libavplugin-57.so
+%{_jvmdir}/%{jredir}/lib/%{archname}/libavplugin-ffmpeg-57.so
 %{_jvmdir}/%{jredir}/lib/%{archname}/libdecora_sse.so
 %{_jvmdir}/%{jredir}/lib/%{archname}/libfxplugins.so
 %{_jvmdir}/%{jredir}/lib/%{archname}/libglass.so
@@ -822,6 +828,10 @@ fi
 %{_jvmdir}/%{jredir}/lib/jfxswt.jar
 
 %changelog
+* Sat Aug 18 2018 Jonathan G. Underwood <jonathan.underwood@gmail.com> - 1.8.0.181-1
+- Update to version 181
+- Define _jvmjardir
+
 * Sat Oct 28 2017 Jonathan G. Underwood <jonathan.underwood@gmail.com> - 1.8.0.152-2
 - Use bundled limited and unlimited JCE policy
 - No longer set up JCE policy with alternatives
